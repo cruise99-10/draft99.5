@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>게시판</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(244, 244, 244);
+        }
+
+        .top {
+            width: 100%;
+            height: 80px;
+            background-image: linear-gradient(0deg, rgba(138, 173, 177, 0.5), rgba(43, 131, 172, 0.864)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCB1OpsV0wWvRmKG72hphsEKv3984R3Afx1Q&usqp=CAU');
+            background-position: center 20%;
+            background-size: 50%;
+            color: rgb(252, 252, 252);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top ul li {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            color: aquamarine;
+            font-size: large;
+        }
+
+        .writing-box {
+            width: 100%;
+            padding: 20%;
+            height: 80px;
+            background-image: linear-gradient(0deg, rgba(138, 173, 177, 0.5), rgba(43, 131, 172, 0.864)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCB1OpsV0wWvRmKG72hphsEKv3984R3Afx1Q&usqp=CAU');
+            background-position: center 20%;
+            background-size: 50%;
+            color: rgb(252, 252, 252);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reviewbtns {
+            margin: auto;
+            width: 50%;
+            height: 80px;
+        }
+
+        .ky {
+            text-align: center;
+            background-color: white;
+            border-radius: 40px 80px;
+            /* background-size: cover;
+            background-position: 50%;
+            width: 150px;
+            height: 150px; */
+        }
+
+        .form-label {
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            nick()
+        });
+
+        function nick() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/nick',
+                data: {},
+                success: function (response) {
+                    nick = response['nickname']
+                    temp_html = `${nick}`
+                    $("#nickname").append(temp_html)
+                }
+            })
+        }
+
+        function posting() {
+            let url = $('#url').val()
+            let reviewcomment = $('#reviewcomment').val()
+            if (url == "") {
+                alert('URL을 입력하세요')
+            } else if (reviewcomment == "") {
+                alert('코멘트를 입력하세요')
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/write',
+                    data: {url_give: url, reviewcomment_give: reviewcomment},
+                    success: function (response) {
+                        alert(response['msg'])
+                        window.location.href = '/'
+                    }
+                })
+            }
+        }
+
+        function llogout() {
+            $.removeCookie('mytoken');
+            alert('로그아웃!')
+            window.location.href = '/login'
+        }
+
+        function redirectWrite() {
+            alert("글 작성 페이지로 이동합니다.")
+            window.location.href = '/write'
+        }
+
+        function redirectMyPage() {
+            alert("개인정보 페이지로 이동합니다.")
+            window.location.href = '/myPage'
+        }
+    </script>
+<body>
+<!-- 작동안될시 이걸로 할것 -->
+<div class="top">
+    <ul class="nav justify-content-center">
+        <li onclick="redirectMyPage()">
+            <a class="text-light nav-link" href="myPage">마이페이지</a>
+        </li>
+        <li onclick="llogout()">
+            <a class="text-light nav-link" href="/login">로그아웃</a>
+        </li>
+    </ul>
+</div>
+<div class=writing-box id="board_write">
+    <!-- <h3 id='nickname'>닉네임 : </h3> -->
+    <div id="write_area">
+        <form enctype="multipart/form-data" action="write_ok.php?board_id=<?echo $board_id;?>" method="post">
+            <div class="mb-3">
+                <A href="https://www.kyobobook.co.kr/" target="_blank" rel="noopener noreferrer">
+                    <div class="ky">
+                        <img src="https://mblogthumb-phinf.pstatic.net/20160921_44/ppanppane_14744296135275Iv6a_PNG/%B1%B3%BA%B8%B9%AE%B0%ED_%B7%CE%B0%ED_%281%29.png?type=w800"
+                             style="width:150px; height:150px;">
+                    </div>
+                </A>
+                <label for="url" class="w-100 h-1 p-3 say form-label">:녹색_책:교보문고를 눌러서 책주소를 알려주세요:녹색_책:</label>
+                <P>
+                    <button class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        https://product.kyobobook.co.kr/detail/S000000000000
+                    </button>
+                    <input id="url" type="email" class="form-control" placeholder="예시와 같이 작성해주세요◕‿◕">
+            </div>
+            <div class="mb-3">
+                <label for="reviewcomment" class="form-label">:녹색_하트:리뷰를 작성해주세요:녹색_하트:</label>
+                <textarea class="form-control" id="reviewcomment" rows="8" placeholder="코멘트를 작성해주세요✏"></textarea>
+            </div>
+            <div class="reviewbtns">
+                <button onclick="posting()" type="button" class="btn btn-outline-dark text-light"
+                        style="background-color:#20c996b4;">저장하기
+                </button>
+                <button onclick="redirectMyPage()" type="button" class="btn btn-outline-dark text-light"
+                        style="background-color:#2ed6a4" ;>취소하기
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,280 @@
+
+/*google font*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/*icon*/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+
+
+body{
+    margin: 0;
+    color: black;
+}
+<link rel="stylesheet" href="../sytle/review.css"></link>
+a{
+
+    color: black;
+}
+
+
+.toggle{
+    position: fixed;
+    z-index: 100;
+    cursor:pointer;
+    top:20px;
+    left:20px;
+}
+
+.toggle i{
+
+width:50px;
+height:50px;
+margin-left:8px;
+margin-top:10px;
+
+box-shadow:0 0 10px rgba(0, 0, 0, 0.372) ;
+text-align:center;
+line-height:50px;
+transition: 0.5s;
+
+/* border-radius: 50%; */
+
+}
+
+/*
+.toggle.active{
+
+background-color: rgba(13, 225, 151, 0.539);
+transform: rotate(180deg);
+
+} */
+
+.toggle.active i{
+
+    background-color: rgba(13, 225, 151, 0.539);
+    transform: rotate(-270deg);
+
+    }
+
+.overlay{
+
+    position: fixed;
+    top:20px;
+    left:20px;
+    width:50px;
+    height:50px;
+    margin-left:8px;
+    margin-top:10px;
+    background-color: rgba(42, 155, 125, 0.977);
+    box-shadow:0 0 10px rgba(247, 235, 235, 0.952) ;
+    text-align:center;
+    line-height:50px;
+    transition: 0.5s;
+    opacity: 0;
+    /* border-radius: 50%; */
+
+
+}
+
+.overlay.active {
+
+ transform: scale(300,1.4);
+ opacity: 1;
+
+}
+
+.gnb{
+
+
+    position: fixed;
+    top:25px;
+    left:70px;
+    display: inline;
+}
+
+.gnb li{
+    color:white;
+}
+
+.like{
+
+
+    float:right;
+    bottom: 0.5px;
+}
+
+
+
+
+.contents{
+/*border: 1px solid black;*/
+width: 900px;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+
+
+}
+
+.scroll{
+ /*   border: 1px solid rgb(201, 30, 164); */
+    display: block;
+}
+
+.items{
+
+    margin-top:250px;
+ /*   display: inline-block;*/
+ /*   border: 1px solid rgb(2, 50, 26);*/
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.review{
+   /*  border: 1px solid red;*/
+    display: inline-block;
+    text-align:start;
+    padding: 50px;
+    width: 270px;
+    height: 320px;
+    margin-top: 4px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.251);
+
+}
+
+
+
+.book_image{
+    display: block;
+    margin-top: 100px;
+
+    width: 250px;
+    height: 300px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.251);
+    margin-left: 25px;
+    padding:10px;
+
+}
+
+.container {
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+
+}
+
+.profile_img{
+    width: 10px;
+    height: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.251);
+
+
+
+}
+
+
+.writer{
+
+    padding:5px;
+    display: flex;
+    float: right;
+
+}
+
+.writer_name{
+    display:table;
+
+}
+
+
+.book_img{
+
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.251);
+    width: 50px;
+    height: 170px;
+
+
+
+}
+
+
+.form-control{
+
+    margin-top:10px;
+    width: 350px;
+    height: 70px;
+    font-size: 13px;
+
+}
+
+.comments{
+
+    /*border: 1px solid green;*/
+    display: inline-block;
+    width: 60%;
+    height: 100px;
+    margin-top: 50px;
+    border-radius: 5px;
+    box-shadow: 0 0 40px rgba(123, 201, 139, 0.842)
+
+}
+
+.bootstrap_comment{
+    display:flex;
+    justify-content:right ;
+}
+
+
+.btn-3d {
+    position: relative;
+    display: inline-block;
+    font-size: 22px;
+    padding: 10px 20px;
+    color: white;
+    margin: 20px 10px 10px;
+    border-radius: 6px;
+    text-align: center;
+    transition: top .01s linear;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+
+
+.btn-3d.green {
+    background-color: #82c8a0;
+    box-shadow: 0 0 0 1px #82c8a0 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 8px 0 0 rgba(126, 194, 155, .7),
+        0 8px 0 1px rgba(0,0,0,.4),
+        0 8px 8px 1px rgba(0,0,0,0.5);
+}
+
+
+.btn-3d.green:active {
+    box-shadow: 0 0 0 1px #82c8a0 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 0 0 1px rgba(0,0,0,0.4);
+}
+
+.cmt_button{
+
+    float: right;
+}
+
+.image{
+
+    float: center;
+}
+
+img {
+    float: center;
+  }
+
